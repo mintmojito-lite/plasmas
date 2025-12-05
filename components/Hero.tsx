@@ -1,99 +1,46 @@
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
-import CanvasCursor from "./ui/canvas-cursor";
-import DynamicGreeting from "./DynamicGreeting";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { GradualSpacing } from "./ui/GradualSpacing";
+import LiquidButton from "./ui/liquid-button";
 
-export default function Hero() {
+export default function Hero({ onNext }: { onNext: () => void }) {
   return (
-    <section id="hero-cursor-area" className="relative flex w-full min-h-screen flex-col justify-center items-center overflow-hidden px-6 text-center bg-transparent pb-12">
-      {/* The Canvas Cursor */}
-      <div className="absolute inset-0 z-[1]">
-        <CanvasCursor />
-      </div>
+    <section className="relative flex w-full min-h-screen flex-col justify-center items-center overflow-hidden px-6 text-center z-10">
 
-      {/* Content (Top Layer) */}
-      <div className="relative z-10 max-w-5xl">
-        <h1 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground transition-colors duration-500 hover:text-gray-600">
-          <DynamicGreeting /> I'm{" "}
-          <NamePopover />
-        </h1>
+      <div className="max-w-5xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6">
+            Stop Flexing <br />
+            <GradualSpacing
+              text="Certificates."
+              className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 font-bold tracking-tighter"
+            />
+          </h1>
+
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-8">
+            Start Building <br />
+            <GradualSpacing
+              text="Systems."
+              className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 font-bold tracking-tighter"
+            />
+          </h1>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mx-auto max-w-3xl text-base sm:text-lg md:text-xl leading-relaxed text-gray-600 font-mono transition-colors duration-500 hover:text-gray-800"
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="mx-auto max-w-2xl text-lg md:text-xl text-white mb-10 font-mono leading-relaxed drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
         >
-          "I believe making a systems is better than flexing the sugarcoated certificates."
+          Plasmas is the forge for students who are tired of 'Hello World'. We don't care about your CGPA. We care about your code.
         </motion.p>
       </div>
 
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 text-[#222]"
-      >
-
-      </motion.div>
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none z-0" />
     </section>
-  );
-}
-
-function NamePopover() {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
-  const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
-
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["15deg", "-15deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-15deg", "15deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  return (
-    <div
-      className="relative inline-block"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        x.set(0);
-        y.set(0);
-      }}
-      onMouseMove={handleMouseMove}
-      style={{ perspective: 1000 }}
-    >
-      <span className="text-purple-600 transition-colors duration-500 hover:text-purple-400 cursor-pointer">
-        Bala Bhaskar
-      </span>
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            style={{ rotateX, rotateY }}
-            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 px-6 py-3 bg-white/10 backdrop-blur-xl border border-white/30 text-gray-800 text-xl rounded-2xl shadow-2xl whitespace-nowrap z-50 flex items-center gap-2 font-[family-name:var(--font-dancing)]"
-          >
-            <span>you can call me bala</span>
-            {/* Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-white/30 drop-shadow-sm" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
   );
 }

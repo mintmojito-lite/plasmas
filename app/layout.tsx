@@ -1,8 +1,7 @@
 import "./globals.css";
 import { Inter, JetBrains_Mono, Dancing_Script } from "next/font/google";
 import Cursor from "../components/Cursor";
-import DancingCat from "../components/DancingCat";
-import ParticleBackground from "../components/ui/particle-background";
+
 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -12,6 +11,12 @@ const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dan
 export const metadata = {
   title: "Bala Bhaskar | Systems Engineer",
   description: "High-Assurance Systems Portfolio",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -36,10 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </svg>
         {/* Only these two global items should be here */}
         <Cursor />
-        <DancingCat />
 
         {/* Magnetic Particle Background */}
-        <ParticleBackground />
 
 
         {/* This renders your page content (above the background) */}

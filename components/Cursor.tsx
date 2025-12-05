@@ -40,7 +40,7 @@ export default function Cursor() {
         }}
       >
         <motion.div
-          className="rounded-full bg-purple-400/60 blur-xl"
+          className="rounded-full bg-white/40 blur-xl"
           animate={{
             height: isHovering ? 120 : 60,
             width: isHovering ? 120 : 60,
@@ -59,7 +59,7 @@ export default function Cursor() {
           translateY: "-50%",
         }}
       >
-        <div className={`rounded-full bg-black transition-all duration-300 ${isHovering ? "h-3 w-3" : "h-2 w-2"
+        <div className={`rounded-full bg-white transition-all duration-300 ${isHovering ? "h-3 w-3" : "h-2 w-2"
           }`} />
       </motion.div>
     </>
