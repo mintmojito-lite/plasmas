@@ -11,13 +11,16 @@ const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dan
 export const metadata = {
   title: "Plasmas",
   description: "The forge for students who build systems, not certificates.",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
 };
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
+
+import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

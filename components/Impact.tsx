@@ -88,8 +88,9 @@ const Card = ({
     targetScale: number;
 }) => {
     const container = useRef(null);
-    const scale = useTransform(progress, range, [1, targetScale]);
-
+    const scale = useTransform(progress, range, [1, 1]); // No scaling
+    // Fade out - accelerated
+    const opacity = useTransform(progress, [range[0], range[0] + 0.3], [1, 0]);
 
     return (
         <div
@@ -99,7 +100,8 @@ const Card = ({
             <motion.div
                 style={{
                     scale,
-                    top: `calc(-5vh + ${i * 25}px)`,
+                    opacity,
+                    top: 0, // No stacking offset
                 }}
                 className="relative flex flex-col w-full max-w-[90%] md:max-w-4xl h-auto min-h-[40vh] md:h-[50vh] rounded-3xl border border-white/10 bg-[#0a0a0a] overflow-hidden shadow-2xl origin-top pointer-events-auto p-6 md:p-12 justify-center"
             >

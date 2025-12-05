@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Manifesto from "@/components/Manifesto";
 import Impact from "@/components/Impact";
 import JoinFooter from "@/components/JoinFooter";
+import Launch from "@/components/Launch";
 import { WebGLShader } from "@/components/WebGLShader";
 
 export default function Home() {
@@ -31,10 +32,26 @@ export default function Home() {
           <Impact onNext={() => scrollToSection("join")} />
         </section>
 
-        <section id="join" className="h-screen w-full snap-start flex-shrink-0">
-          <JoinFooter onRestart={() => scrollToSection("hero")} />
-        </section>
-      </div>
-    </main>
-  );
-}
+                <section id="join" className="h-screen w-full snap-start flex-shrink-0">
+
+                  <JoinFooter onRestart={() => scrollToSection("hero")} />
+
+                </section>
+
+        
+
+                <section id="launch" className="h-screen w-full snap-start flex-shrink-0">
+
+                  <Launch />
+
+                </section>
+
+              </div>
+
+            </main>
+
+          );
+
+        }
+
+        
