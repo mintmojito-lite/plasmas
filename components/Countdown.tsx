@@ -42,12 +42,12 @@ const Countdown = () => {
 
   const NumberBox = ({ value, unit }: { value: number; unit: string }) => (
     <div className="flex flex-col items-center">
-      <div className="relative h-24 w-24 flex items-center justify-center bg-transparent rounded-lg">
-        <span className="text-5xl font-bold text-[#FF6622]">
-            {String(value).padStart(2, '0')}
+      <div className="relative h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 flex items-center justify-center bg-transparent rounded-lg">
+        <span className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#FF6622]">
+          {String(value).padStart(2, '0')}
         </span>
       </div>
-      <span className="mt-2 text-sm uppercase text-gray-400">{unit}</span>
+      <span className="mt-1 md:mt-2 text-[10px] sm:text-xs md:text-sm uppercase text-gray-400">{unit}</span>
     </div>
   );
 
@@ -58,7 +58,7 @@ const Countdown = () => {
           Plasmas Discord Channel Live Now
         </h2>
       ) : (
-        <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-5 text-center">
           <NumberBox value={timeLeft.days} unit="Days" />
           <NumberBox value={timeLeft.hours} unit="Hours" />
           <NumberBox value={timeLeft.minutes} unit="Minutes" />
