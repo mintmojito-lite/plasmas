@@ -9,8 +9,8 @@ const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" }
 const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing" });
 
 export const metadata = {
-  title: "Bala Bhaskar | Systems Engineer",
-  description: "High-Assurance Systems Portfolio",
+  title: "Plasmas",
+  description: "The forge for students who build systems, not certificates.",
   viewport: {
     width: 'device-width',
     initialScale: 1,
