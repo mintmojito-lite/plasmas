@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import LiquidButton from "./ui/liquid-button";
 import { FlowButton } from "./ui/flow-button";
 import { Github, Instagram, Disc, RefreshCcw } from "lucide-react";
+import RulesModal from "./RulesModal";
 
 export default function JoinFooter({ onRestart }: { onRestart: () => void }) {
     const [showForm, setShowForm] = useState(false);
+    const [showRules, setShowRules] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     return (
@@ -42,6 +44,12 @@ export default function JoinFooter({ onRestart }: { onRestart: () => void }) {
                             className="flex flex-wrap justify-center gap-6 mb-20"
                         >
                             <FlowButton text="Join Plasmas Now!" onClick={() => setShowForm(true)} />
+                            <button
+                                onClick={() => setShowRules(true)}
+                                className="px-8 py-4 rounded-full border border-white/20 bg-white/5 text-white font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                            >
+                                See Rules
+                            </button>
                         </motion.div>
 
                         <motion.p
@@ -119,6 +127,8 @@ export default function JoinFooter({ onRestart }: { onRestart: () => void }) {
                     designed by humans on earth
                 </p>
             </div>
+
+            <RulesModal isOpen={showRules} onClose={() => setShowRules(false)} />
         </footer>
     );
 }
